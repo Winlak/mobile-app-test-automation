@@ -1,0 +1,25 @@
+.DS_Store
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+allure-results*/
+allure-report/
+artifacts/
+appium*.log
+
+sut/.gradle/
+sut/.kotlin/
+sut/build/
+sut/app/build/
+local.properties
+*.apk
+
+# IDE
+.idea/
+*.iml

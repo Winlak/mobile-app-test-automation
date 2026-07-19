@@ -1,0 +1,31 @@
+defaults:
+  appium_url: "http://127.0.0.1:4723"
+  app_path: "sut/app/build/outputs/apk/debug/app-debug.apk"
+  app_package: "com.example.expenseautomationsut"
+  app_activity: ".LoginActivity"
+  explicit_timeout: 12
+  new_command_timeout: 120
+  adb_exec_timeout: 120000
+  server_install_timeout: 120000
+  server_launch_timeout: 120000
+  language: "ru"
+  locale: "RU"
+  auto_grant_permissions: true
+  disable_window_animation: true
+  # Нужны только для параллельного запуска на нескольких Android-устройствах.
+  system_port: null
+  mjpeg_server_port: null
+
+devices:
+  emulator:
+    device_name: "Android Emulator"
+    platform_version: "35"
+    udid: null
+  real_device:
+    device_name: "Android device"
+    platform_version: null
+    udid: null
+
+test_user:
+  email: "qa.user@example.test"
+  password: "Expense123!"

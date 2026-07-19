@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:contentDescription="@string/login_screen_desc">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Вход в учёт расходов"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="emailAddress"
+        android:contentDescription="@string/login_email_desc"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:autofillHints="password"
+        android:contentDescription="@string/login_password_desc"
+        android:hint="Пароль"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/login_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/login_error_desc"
+        android:textColor="#B3261E"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/login_submit_desc"
+        android:text="Войти" />
+</LinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Expense Tracker Demo</string>
+    <string name="login_email_desc">login-email</string>
+    <string name="login_password_desc">login-password</string>
+    <string name="login_submit_desc">login-submit</string>
+    <string name="login_error_desc">login-error</string>
+    <string name="login_screen_desc">login-screen</string>
+    <string name="expenses_screen_desc">expenses-screen</string>
+    <string name="expense_add_desc">expense-add</string>
+    <string name="filter_open_desc">filter-open</string>
+    <string name="logout_desc">logout</string>
+    <string name="empty_state_desc">expenses-empty</string>
+    <string name="expense_form_screen_desc">expense-form-screen</string>
+    <string name="expense_title_desc">expense-title</string>
+    <string name="expense_amount_desc">expense-amount</string>
+    <string name="expense_category_desc">expense-category</string>
+    <string name="expense_save_desc">expense-save</string>
+    <string name="expense_delete_desc">expense-delete</string>
+    <string name="expense_error_desc">expense-form-error</string>
+    <string name="category_dialog_desc">category-dialog</string>
+    <string name="confirmation_dialog_desc">confirmation-dialog</string>
+</resources>

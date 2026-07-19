@@ -1,0 +1,82 @@
+name: Android UI automation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Python quality checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install quality tools
+        run: python -m pip install --upgrade pip && python -m pip install -e '.[dev]'
+
+      - name: Lint and type-check
+        run: make check
+
+  smoke:
+    name: Android emulator smoke
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip && python -m pip install -e .
+
+      - name: Build reproducible demo SUT
+        working-directory: sut
+        run: ./gradlew :app:assembleDebug
+
+      - name: Install Appium 2 and UiAutomator2
+        run: npm install --global appium@2.15.0 && appium driver install uiautomator2@3.9.0
+
+      - name: Run smoke tests on headless emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          emulator-options: -no-window -noaudio -no-boot-anim -gpu swiftshader_indirect
+          disable-animations: true
+          script: |
+            appium --log appium.log > /dev/null 2>&1 &
+            curl --silent --show-error --fail --retry 60 --retry-connrefused --retry-delay 1 http://127.0.0.1:4723/status > /dev/null
+            pytest -m smoke --alluredir=allure-results --apk sut/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload Allure and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-ui-results
+          if-no-files-found: warn
+          path: |
+            allure-results
+            artifacts
+            appium.log
