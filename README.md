@@ -128,7 +128,7 @@ make allure
 | --- | --- |
 | URL Appium | `APPIUM_URL` или `--appium-url` |
 | APK | `APK_PATH` или `--apk` |
-| Android/API | `ANDROID_VERSION` или `--android-version` |
+| версия Android для Appium | `ANDROID_VERSION` или `--android-version` |
 | serial устройства | `UDID` или `--udid` |
 | явное ожидание | `EXPLICIT_TIMEOUT` или `--explicit-timeout` |
 | Appium command timeout | `NEW_COMMAND_TIMEOUT` или `--new-command-timeout` |
@@ -172,6 +172,6 @@ make allure
 make check
 ```
 
-Это выполняет Ruff (включая формат) и строгую проверку типов Mypy для фреймворка. Workflow [`.github/workflows/android-ui.yml`](.github/workflows/android-ui.yml) сначала запускает эти проверки, затем собирает SUT, устанавливает Appium 2 + UiAutomator2 и выполняет `smoke` на headless Android API 35. Зависимости Python и Gradle кэшируются штатными GitHub Actions. Allure Results, `artifacts` и лог Appium выгружаются всегда, в том числе при падении.
+Это выполняет Ruff (включая формат) и строгую проверку типов Mypy для фреймворка. Workflow [`.github/workflows/android-ui.yml`](.github/workflows/android-ui.yml) сначала запускает эти проверки, затем собирает SUT, устанавливает Appium 2 + UiAutomator2 и выполняет `smoke` на headless Android 15 (API 35). Зависимости Python и Gradle кэшируются штатными GitHub Actions. Allure Results, `artifacts` и лог Appium выгружаются всегда, в том числе при падении.
 
-Проект не публикует результаты тестов, screenshots или фиктивные бейджи и не выполняет публикацию на GitHub.
+Проект не коммитит результаты тестов и screenshots и не использует фиктивные бейджи. Диагностические артефакты доступны только в конкретном запуске GitHub Actions.

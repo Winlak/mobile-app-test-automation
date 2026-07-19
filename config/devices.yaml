@@ -19,7 +19,7 @@ defaults:
 devices:
   emulator:
     device_name: "Android Emulator"
-    platform_version: "35"
+    platform_version: "15"
     udid: null
   real_device:
     device_name: "Android device"
